@@ -1,5 +1,5 @@
 # Spec T03 · Notebook, seção 2: análise exploratória
-**Status:** Aguardando aprovação
+**Status:** Concluída
 
 ## Objetivo
 Responder com dados a duas perguntas de negócio: **"Por que cancelam?"** (pergunta 2) e **"Quem é o cliente de risco?"** (pergunta 3). Para isso, cada uma das 5 hipóteses da proposta recebe um veredito baseado em números. Os gráficos produzidos aqui vão direto para o slide 3 da apresentação.

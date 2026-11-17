@@ -97,11 +97,11 @@ Criar `churn.ipynb` com:
 **Não fazer:** padronizar `SeniorCitizen` nem fundir "No internet service" com "No" (D-09).
 
 ### T03 · Notebook, seção 2: análise exploratória
-- [ ] Taxa geral de churn (1 número).
-- [ ] **Figura 1** (`figures/01_churn_por_categoria.png`): grade de gráficos de barras com a taxa de churn por categoria, para `Contract`, `InternetService`, `PaymentMethod`, `TechSupport`, `OnlineSecurity` e `PaperlessBilling`, gerada num único laço.
-- [ ] **Figura 2** (`figures/02_numericas.png`): boxplots de `tenure` e `MonthlyCharges` por classe de churn.
-- [ ] Tabela de perfil (pergunta 3): `groupby('Churn')` com a média das numéricas e a moda de `Contract`, `InternetService` e `PaymentMethod`.
-- [ ] Célula Markdown com o **veredito das 5 hipóteses** da seção 7.1 (confirmada ou não), cada uma com o número que a sustenta (D-10). Inclua uma frase sobre `TotalCharges` ≈ `tenure × MonthlyCharges` (D-11).
+- [x] Taxa geral de churn (1 número).
+- [x] **Figura 1** (`figures/01_churn_por_categoria.png`): grade de gráficos de barras com a taxa de churn por categoria, para `Contract`, `InternetService`, `PaymentMethod`, `TechSupport`, `OnlineSecurity` e `PaperlessBilling`, gerada num único laço.
+- [x] **Figura 2** (`figures/02_numericas.png`): boxplots de `tenure` e `MonthlyCharges` por classe de churn.
+- [x] Tabela de perfil (pergunta 3): `groupby('Churn')` com a média das numéricas e a moda de `Contract`, `InternetService` e `PaymentMethod`.
+- [x] Célula Markdown com o **veredito das 5 hipóteses** da seção 7.1 (confirmada ou não), cada uma com o número que a sustenta (D-10). Inclua uma frase sobre `TotalCharges` ≈ `tenure × MonthlyCharges` (D-11).
 
 **Entregável:** seção 2 do notebook, 2 figuras e a tabela de hipóteses.
 **Aceite:** as figuras existem em `figures/` e o texto das hipóteses usa números calculados no próprio notebook.
