@@ -8,7 +8,7 @@ As justificativas de cada escolha estão no [`DECISION_LOG.md`](DECISION_LOG.md)
 1. Execute as tarefas **em ordem**, uma por vez. Cada tarefa tem entregável e critério de aceite.
 2. **Spec antes de cada tarefa (D-28):** antes de escrever qualquer código de uma tarefa, crie `specs/T0x_<nome>.md` a partir do [modelo de spec](#modelo-de-spec), faça o commit e **pare até o aluno aprovar**. Ajustes pedidos pelo aluno entram na spec antes da execução.
 3. **Não implemente nada da seção "Fora de escopo"**, nem itens novos não listados aqui. Se algo parecer necessário, registre uma nova decisão no `DECISION_LOG.md` e pare para pedir aprovação ao aluno.
-4. **Commits granulares (D-29):** um commit por mudança lógica (por exemplo, uma seção do notebook ou um arquivo de configuração), nunca um commit único para a tarefa inteira. Mensagens no formato `<tipo>(T0x): <resumo>`, com tipo `spec`, `feat`, `docs`, `chore` ou `data`. Ao concluir a tarefa, marque o checkbox aqui e altere o status da spec para "Concluída".
+4. **Commits granulares (D-29):** um commit por mudança lógica (por exemplo, uma seção do notebook ou um arquivo de configuração), nunca um commit único para a tarefa inteira. Mensagens no formato `<tipo>(T0x): <resumo>`, com tipo `spec`, `feat`, `docs`, `chore` ou `data`. A mensagem tem **uma única linha descritiva**, sem corpo, sem `Co-Authored-By` e sem mencionar ferramentas de IA. Ao concluir a tarefa, marque o checkbox aqui e altere o status da spec para "Concluída".
 5. **Push a cada milestone (D-29):** faça `git push` ao concluir cada milestone da tabela abaixo.
 6. Nos pontos marcados com 🧑 **Revisão do aluno**, pare e aguarde.
 7. Ambiente: Python 3.10, venv em `.venv/`. Todos os comandos rodam com o venv ativo.
