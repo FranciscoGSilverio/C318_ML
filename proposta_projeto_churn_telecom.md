@@ -6,6 +6,8 @@
 **Formato:** Projeto individual
 **Enquadramento:** Aprendizagem Supervisionada – Classificação (binária)
 
+> **Nota de revisão (2026-11-16):** o escopo foi enxugado durante a execução, mantendo todos os requisitos. As decisões estão em [`DECISION_LOG.md`](DECISION_LOG.md), e os resultados no [`README.md`](README.md). Destaques: `MonthlyCharges` saiu das features do modelo por multicolinearidade (D-30), e a análise financeira ganhou o cenário "contatar todos" e uma análise de sensibilidade das premissas (D-31).
+
 ---
 
 ## 1. Contexto
@@ -41,7 +43,7 @@ Construir um modelo de classificação que estime a **probabilidade de churn** d
 | Variável-alvo | `Churn` (Yes / No) |
 | Unidade de análise | Cliente |
 | Saída do modelo | Probabilidade de churn (0 a 1) e classe prevista |
-| Desafio principal | Desbalanceamento de classes (cerca de 26% de churn) |
+| Desafio principal | Desbalanceamento de classes (26,5% de churn) |
 
 ## 5. Dados
 
@@ -89,7 +91,7 @@ Construir um modelo de classificação que estime a **probabilidade de churn** d
 - `TotalCharges` vem como texto e tem **11 valores em branco**, todos de clientes com `tenure = 0` (recém-chegados). É preciso converter para número e tratar esses casos, por exemplo preenchendo com 0 ou removendo as linhas.
 - `SeniorCitizen` está codificada como 0/1, enquanto as demais binárias estão como Yes/No. Convém padronizar.
 - Várias colunas de serviço têm a categoria "No internet service" ou "No phone service". Vale avaliar se ela deve ser fundida com "No".
-- As classes são desbalanceadas: cerca de 73% "No" e 27% "Yes".
+- As classes são desbalanceadas: 73,5% "No" e 26,5% "Yes".
 
 ## 6. Requisitos
 
@@ -99,17 +101,17 @@ Construir um modelo de classificação que estime a **probabilidade de churn** d
 3. **Apresentação final** que sintetize o projeto para públicos técnico e de negócio.
 
 ### 6.2 Requisitos funcionais do projeto
-- [ ] Carregar e inspecionar o conjunto de dados
-- [ ] Limpar e tratar inconsistências (seção 5.4)
-- [ ] Fazer análise exploratória com visualizações que respondam às perguntas 2 e 3
-- [ ] Pré-processar: codificar variáveis categóricas e escalonar as numéricas quando o modelo exigir
-- [ ] Separar treino e teste de forma **estratificada**
-- [ ] Treinar um modelo baseline e pelo menos dois modelos adicionais
-- [ ] Tratar o desbalanceamento de classes
-- [ ] Ajustar hiperparâmetros com validação cruzada
-- [ ] Avaliar com métricas técnicas e de negócio (seção 8)
-- [ ] Interpretar o modelo (importância das variáveis)
-- [ ] Simular o impacto financeiro de uma campanha de retenção (pergunta 4)
+- [x] Carregar e inspecionar o conjunto de dados
+- [x] Limpar e tratar inconsistências (seção 5.4)
+- [x] Fazer análise exploratória com visualizações que respondam às perguntas 2 e 3
+- [x] Pré-processar: codificar variáveis categóricas e escalonar as numéricas quando o modelo exigir
+- [x] Separar treino e teste de forma **estratificada**
+- [x] Treinar um modelo baseline e pelo menos dois modelos adicionais
+- [x] Tratar o desbalanceamento de classes
+- [x] Ajustar hiperparâmetros com validação cruzada
+- [x] Avaliar com métricas técnicas e de negócio (seção 8)
+- [x] Interpretar o modelo (importância das variáveis)
+- [x] Simular o impacto financeiro de uma campanha de retenção (pergunta 4)
 
 ### 6.3 Ferramentas
 | Finalidade | Ferramenta |
@@ -145,6 +147,7 @@ O desenvolvimento segue as duas fases sugeridas no escopo: **análise** e **mode
 - Aplicar `StandardScaler` nas numéricas (para modelos sensíveis à escala)
 - Separar treino e teste em 80/20, estratificado, com `random_state` fixo
 - Montar tudo com `Pipeline` e `ColumnTransformer` do scikit-learn, para evitar vazamento de dados
+- Deixar `MonthlyCharges` fora das features do modelo: ela é a soma dos serviços contratados (R² = 0,9988) e distorce os coeficientes. A coluna continua sendo usada na EDA e no cálculo financeiro (D-30)
 
 ### 7.3 Modelagem
 | Modelo | Papel |
@@ -174,7 +177,7 @@ O desenvolvimento segue as duas fases sugeridas no escopo: **análise** e **mode
 | **ROC-AUC** | Capacidade geral de ordenar clientes por risco, independente do limiar |
 | Matriz de confusão | Base para a análise de custo |
 
-> A **acurácia não deve ser a métrica principal**. Um modelo que prevê "não cancela" para todos já acerta cerca de 73%.
+> A **acurácia não deve ser a métrica principal**. Um modelo que prevê "não cancela" para todos já acerta 73,5%.
 
 ### 8.2 Métricas de negócio
 Simulação com premissas explícitas, que podem ser ajustadas:
@@ -194,27 +197,28 @@ Indicadores a apresentar:
 - **Curva de ganho (lift):** "contatando os 20% de maior risco, alcançamos X% de todos os cancelamentos"
 - Limiar de decisão que **maximiza o ganho**, que tende a ser diferente de 0,5
 
-## 9. Estrutura Sugerida do Repositório
+## 9. Estrutura do Repositório
 
 ```
-churn-telecom/
-├── README.md                  # Resumo do projeto e como executar
+C318_ML/
+├── README.md                          # Resumo do projeto, resultados e como executar
+├── proposta_projeto_churn_telecom.md  # Este documento
+├── BACKLOG.md                         # Plano de execução por tarefas
+├── DECISION_LOG.md                    # Decisões de escopo e de modelagem
+├── specs/                             # Spec de cada tarefa, aprovada antes da execução
+├── churn.ipynb                        # Notebook único: dados, EDA, modelagem, impacto e conclusões
 ├── data/
-│   └── raw/                   # CSV original (ou instruções de download)
-├── notebooks/
-│   ├── 01_eda.ipynb           # Análise exploratória
-│   ├── 02_preprocessamento.ipynb
-│   ├── 03_modelagem.ipynb
-│   └── 04_impacto_negocio.ipynb
-├── src/                       # Funções reutilizáveis (opcional)
-├── reports/
-│   └── figures/               # Gráficos usados na apresentação
-├── docs/
-│   └── proposta_projeto.md    # Este documento
+│   └── Telco-Customer-Churn.csv       # Dataset original (IBM)
+├── figures/                           # Gráficos usados na apresentação
+├── slides.md / slides.pdf             # Apresentação final
 └── requirements.txt
 ```
 
+A estrutura sugerida originalmente (4 notebooks, `src/`, `docs/`, `reports/`) foi simplificada para um notebook único e um repositório plano (D-01, D-02).
+
 ## 10. Cronograma Estimado
+
+> **Nota de revisão:** o escopo foi reduzido ao indispensável (ver [`DECISION_LOG.md`](DECISION_LOG.md)), e o plano revisado em [`BACKLOG.md`](BACKLOG.md) estima cerca de 7–10 h de trabalho ativo do desenvolvedor, contra as 18–30 h abaixo.
 
 O projeto será desenvolvido por **1 pessoa com apoio de desenvolvimento agêntico (Claude Code)**. O agente escreve e executa a maior parte do código. O desenvolvedor fica com a revisão, a interpretação dos resultados, as decisões de modelagem e de negócio, a documentação e a apresentação.
 
