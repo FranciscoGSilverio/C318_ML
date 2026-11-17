@@ -1,5 +1,5 @@
 # Spec T05 · Notebook, seção 4: limiar e impacto financeiro
-**Status:** Aguardando aprovação
+**Status:** Aprovada
 
 ## Objetivo
 Responder **"Vale a pena agir?"** (pergunta 4). A seção traduz o modelo em dinheiro: escolhe o limiar de decisão que maximiza o ganho de uma campanha de retenção e compara o resultado com uma campanha aleatória e com não fazer nada. É o principal diferencial do projeto e o slide de destaque da apresentação.
@@ -13,14 +13,15 @@ Responder **"Vale a pena agir?"** (pergunta 4). A seção traduz o modelo em din
   `Σ (valor dos churns contatados × taxa de sucesso) − (nº de contatados × custo)`.
 - RF-3: o **limiar ótimo** é escolhido só com dados de treino, a partir das probabilidades *out-of-fold* (cada cliente do treino recebe a previsão de um modelo que não o viu). O teste não participa dessa escolha (D-19).
 - RF-4: a **Figura 5** mostra a curva de ganho × limiar (treino, OOF), com o limiar ótimo e o limiar 0,5 marcados.
-- RF-5: uma **tabela de cenários no teste** compara 4 cenários: não fazer nada; campanha aleatória com o mesmo número de contatos do modelo (valor esperado); modelo com limiar 0,5; e modelo com limiar ótimo. As colunas são: contatados, churns alcançados, ganho (US$), precisão e recall.
+- RF-5: uma **tabela de cenários no teste** compara 5 cenários: não fazer nada; **contatar todos** (D-31); campanha aleatória com o mesmo número de contatos do modelo (valor esperado); modelo com limiar 0,5; e modelo com limiar ótimo. As colunas são: contatados, churns alcançados, ganho (US$), precisão e recall.
 - RF-6: a **Figura 6** é a curva de ganho acumulado no teste: a porcentagem de churns alcançados em função da porcentagem de clientes contatados, ordenando do maior risco para o menor. Mostra a diagonal da escolha aleatória e a anotação "top 20% → X% dos churns".
-- RF-7: uma célula de Markdown traz as **conclusões**: respostas curtas às perguntas de negócio 1 a 4, com os números do notebook.
+- RF-7: uma **tabela de sensibilidade** (D-31) varia a taxa de sucesso {15%, 30%, 45%} e o custo por contato {US$ 25, 50, 100}. Para cada combinação, ela mostra o limiar ótimo (reescolhido no treino) e o ganho no teste do modelo, da campanha aleatória e de contatar todos.
+- RF-8: uma célula de Markdown traz as **conclusões**: respostas curtas às perguntas de negócio 1 a 4, com os números do notebook.
 
 ## Entregáveis
 - Seção **4 · Limiar e impacto financeiro** do `churn.ipynb`.
 - `figures/05_ganho_por_limiar.png` e `figures/06_curva_ganho_acumulado.png`.
-- Tabela de cenários e conclusões.
+- Tabela de cenários, tabela de sensibilidade e conclusões.
 
 ## Como será feito (código resumido)
 
@@ -52,7 +53,14 @@ limiar_otimo = limiares[np.argmax(ganhos)]
 k = (proba_test >= limiar_otimo).sum()          # nº de contatos do modelo
 valor_churns = (monthly_test[y_test == 1] * MESES_VALOR * TAXA_SUCESSO).sum()
 aleatoria = k / len(y_test) * valor_churns - k * CUSTO_CONTATO   # valor esperado
-# tabela: nada (0) | aleatória | modelo @0,5 | modelo @ótimo
+# tabela: nada (0) | contatar todos | aleatória | modelo @0,5 | modelo @ótimo
+
+# --- Sensibilidade (D-31): reescolhe o limiar no treino para cada premissa ---
+for taxa in [0.15, 0.30, 0.45]:
+    for custo in [25, 50, 100]:
+        limiar = escolher_limiar(taxa, custo)          # treino (OOF)
+        tabela = cenarios(limiar, taxa, custo)         # teste
+        # guarda: limiar, ganho modelo, ganho aleatória, ganho contatar todos
 
 # --- Figura 6: curva de ganho acumulado ---
 ordem = np.argsort(-proba_test)                  # do maior risco para o menor
@@ -73,7 +81,8 @@ pct_contatados = np.arange(1, len(ordem) + 1) / len(ordem)
 1. `feat(T05): adiciona premissas financeiras e escolha do limiar ótimo (figura 5)`
 2. `feat(T05): adiciona tabela de cenários no teste`
 3. `feat(T05): adiciona curva de ganho acumulado (figura 6)`
-4. `feat(T05): adiciona conclusões das perguntas de negócio`
-5. `docs(T05): marca T05 como concluída no backlog`
+4. `feat(T05): adiciona análise de sensibilidade das premissas`
+5. `feat(T05): adiciona conclusões das perguntas de negócio`
+6. `docs(T05): marca T05 como concluída no backlog`
 
 Depois dos commits: **push da milestone M2** e pausa para a sua revisão (H2) da modelagem e das premissas financeiras.

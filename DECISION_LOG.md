@@ -178,3 +178,11 @@ Status possíveis: **Aceita** (entra no plano) · **Rejeitada** (fica fora do es
   - Mensagem de negócio: *"O que faz o cliente cancelar não é o preço em si, mas o que ele está pagando: fibra e streaming."*
   - Lição de modelagem: *"Prever bem não é o mesmo que explicar bem."* A primeira versão do modelo tinha AUC de 0,84, mas dizia que mensalidade alta reduz o churn. A conferência com a EDA revelou a multicolinearidade, e a correção não custou desempenho.
   - Analogia, se a banca perguntar: duas pessoas empurrando o mesmo carro sempre juntas. Dá para ver que o carro andou, mas não quanto cada uma empurrou.
+
+### D-31 · Cenário "contatar todos" e análise de sensibilidade das premissas — Aceita
+- **Contexto:** a pergunta 4 ("vale a pena agir?") é a principal do projeto, e as premissas financeiras (D-20) são hipóteses, não dados. Com as premissas atuais, até contatar a base inteira dá lucro (26,5% × US$ 268 ≈ US$ 71 por contato, contra US$ 50 de custo). Por isso vencer "não fazer nada" não basta.
+- **Decisão:**
+  1. Acrescentar o cenário **"contatar todos"** (campanha em massa) à tabela de cenários.
+  2. Acrescentar uma **análise de sensibilidade**: grade de taxa de sucesso {15%, 30%, 45%} × custo por contato {US$ 25, 50, 100}. Para cada combinação, o limiar ótimo é reescolhido no treino (OOF), e o ganho do modelo é comparado com o da campanha aleatória e o de contatar todos, no teste.
+- **Justificativa:** juntos custam cerca de 15 linhas, reaproveitando as funções de ganho e de cenários. Eles respondem às duas objeções mais prováveis da banca: *"por que não mandar a oferta para todo mundo?"* e *"e se o seu 30% estiver errado?"*.
+- **Alternativa rejeitada:** variar também os 12 meses de valor do cliente. O efeito é equivalente ao da taxa de sucesso (os dois multiplicam a receita), então seria redundante.

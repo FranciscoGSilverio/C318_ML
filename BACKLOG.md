@@ -129,8 +129,9 @@ Criar `churn.ipynb` com:
 - [ ] Função `ganho(y, proba, limiar, monthly)` que calcula `Σ(MonthlyCharges × MESES_VALOR × TAXA_SUCESSO dos VP) − (VP + FP) × CUSTO_CONTATO`.
 - [ ] Probabilidades out-of-fold no treino com `cross_val_predict(modelo_final, X_train, y_train, cv=5, method='predict_proba')` e varredura de limiares de 0,05 a 0,95 em passos de 0,01 para achar o limiar ótimo (D-19).
 - [ ] **Figura 5** (`figures/05_ganho_por_limiar.png`): curva de ganho × limiar no treino (OOF), com o limiar ótimo marcado.
-- [ ] Tabela de cenários **no teste** (D-22): não fazer nada (US$ 0), campanha aleatória com o mesmo número de contatos (valor esperado), modelo com limiar 0,5 e modelo com o limiar ótimo. Para cada cenário: clientes contatados, churns alcançados, ganho em US$, precisão e recall.
+- [ ] Tabela de cenários **no teste** (D-22): não fazer nada (US$ 0), contatar todos (D-31), campanha aleatória com o mesmo número de contatos (valor esperado), modelo com limiar 0,5 e modelo com o limiar ótimo. Para cada cenário: clientes contatados, churns alcançados, ganho em US$, precisão e recall.
 - [ ] **Figura 6** (`figures/06_curva_ganho_acumulado.png`): curva de ganho acumulado no teste (% de churns alcançados × % de clientes contatados, ordenados por risco), com a diagonal aleatória e uma anotação "top 20% → X% dos churns".
+- [ ] Tabela de sensibilidade (D-31): taxa de sucesso {15%, 30%, 45%} × custo {US$ 25, 50, 100}, com o limiar reescolhido no treino e o ganho no teste do modelo, da campanha aleatória e de contatar todos.
 - [ ] Célula Markdown com as conclusões: respostas curtas para as perguntas de negócio 1 a 4, usando os números do notebook.
 
 **Entregável:** seção 4 do notebook, figuras 5 e 6, tabela de cenários e conclusões.
