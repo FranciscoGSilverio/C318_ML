@@ -1,5 +1,5 @@
 # Spec T06 · Execução limpa, README e atualização da proposta
-**Status:** Aguardando aprovação
+**Status:** Aprovada
 
 ## Objetivo
 Fechar o entregável **documentação do projeto**: um README que permite ao professor entender o resultado em 2 minutos e rodar o projeto, e a proposta original atualizada para refletir o que de fato foi feito.
@@ -67,12 +67,8 @@ Uma linha: o que é o projeto (C318, Inatel).
 
 As seções 1 a 3, 5.1 a 5.3, 11, 12 e 13 continuam válidas e não mudam.
 
-## ❓ Decisão pendente: declaração de uso de IA
-A proposta (seção 10.2) promete declarar o uso de IA, e o texto atual da seção 10 cita a ferramenta pelo nome. Como você pediu que os **commits** não mencionem a ferramenta, preciso saber como prefere a declaração na documentação:
-- **(a) Genérica:** "O desenvolvimento contou com um assistente de programação baseado em IA generativa para escrita de código e documentação. Decisões de modelagem, interpretação e revisão foram feitas pelo autor."
-- **(b) Nomeando a ferramenta**, como já está na seção 10 da proposta.
-
-Se a escolha for (a), ajusto também o trecho da seção 10 da proposta, para manter consistência.
+## Declaração de uso de IA
+Decidido pelo aluno: a declaração **cita o Claude Code nominalmente**, consistente com a seção 10 da proposta.
 
 ## Verificação
 - O `nbconvert` termina sem erro.
