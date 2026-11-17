@@ -75,10 +75,10 @@ Lista dos commits granulares.
 ## Tarefas do agente
 
 ### T01 · Setup do ambiente e dos dados
-- [ ] Criar `.gitignore` com `.venv/`, `.ipynb_checkpoints/` e `__pycache__/`.
-- [ ] Criar o venv e instalar `pandas scikit-learn matplotlib jupyter` (D-04).
-- [ ] Gerar `requirements.txt` com **apenas essas 4 bibliotecas**, fixadas nas versões instaladas (`==`). Não usar `pip freeze` completo.
-- [ ] Baixar o dataset (D-03):
+- [x] Criar `.gitignore` com `.venv/`, `.ipynb_checkpoints/` e `__pycache__/`.
+- [x] Criar o venv e instalar `pandas scikit-learn matplotlib jupyter` (D-04).
+- [x] Gerar `requirements.txt` com **apenas essas 4 bibliotecas**, fixadas nas versões instaladas (`==`). Não usar `pip freeze` completo.
+- [x] Baixar o dataset (D-03):
   `curl -L -o data/Telco-Customer-Churn.csv https://raw.githubusercontent.com/IBM/telco-customer-churn-on-icp4d/master/data/Telco-Customer-Churn.csv`
 
 **Entregável:** `.gitignore`, `requirements.txt` e `data/Telco-Customer-Churn.csv`.

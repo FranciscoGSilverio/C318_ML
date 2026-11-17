@@ -1,5 +1,5 @@
 # Spec T01 · Setup do ambiente e dos dados
-**Status:** Aguardando aprovação
+**Status:** Concluída
 
 ## Objetivo
 Deixar o projeto reproduzível: um ambiente Python isolado com as 4 dependências do projeto e o dataset dentro do repositório. Assim qualquer pessoa clona, instala e roda, sem passo manual.
