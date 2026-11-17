@@ -4,6 +4,8 @@
 ## Objetivo
 Responder **"Quem vai cancelar?"** (pergunta 1). A seção treina e compara 3 modelos com validação cruzada, escolhe um modelo final e mede o desempenho dele uma única vez em dados nunca vistos. O resultado é o modelo que a seção 4 usa para calcular o impacto financeiro.
 
+> **Alteração aprovada durante a execução (D-30):** `MonthlyCharges` foi retirada das features do modelo por multicolinearidade com as colunas de serviço (R² = 0,9988), que invertia o sinal do seu coeficiente. O código abaixo já reflete a mudança.
+
 ## Requisitos funcionais
 - RF-1: os dados são separados em treino (80%) e teste (20%), mantendo a proporção de churn nos dois conjuntos (estratificado).
 - RF-2: um único pré-processamento é aplicado dentro do pipeline: one-hot nas categóricas e padronização nas 3 numéricas. Como ele fica dentro do pipeline, nada do teste vaza para o treino (D-15).
@@ -23,12 +25,12 @@ Responder **"Quem vai cancelar?"** (pergunta 1). A seção treina e compara 3 mo
 
 ```python
 # --- Separação treino/teste (estratificada) ---
-X, y = df.drop(columns='Churn'), df['Churn']
+X, y = df.drop(columns=['Churn', 'MonthlyCharges']), df['Churn']   # D-30
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, stratify=y, random_state=RANDOM_STATE)
 
 # --- Pré-processamento único (aprendido só no treino, dentro do pipeline) ---
-num = ['tenure', 'MonthlyCharges', 'TotalCharges']
+num = ['tenure', 'TotalCharges']
 cat = [c for c in X.columns if c not in num]
 pre = ColumnTransformer([('cat', OneHotEncoder(handle_unknown='ignore'), cat),
                          ('num', StandardScaler(), num)])

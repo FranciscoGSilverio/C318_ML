@@ -64,6 +64,7 @@ Status possíveis: **Aceita** (entra no plano) · **Rejeitada** (fica fora do es
 
 ### D-11 · Sem matriz de correlação — Rejeitada
 - **Justificativa:** existem só três variáveis numéricas, e a única correlação relevante é óbvia (`TotalCharges` ≈ `tenure × MonthlyCharges`). Uma frase no notebook substitui o gráfico.
+- **Nota (2026-11-16):** a matriz continua dispensável, mas a redundância de `MonthlyCharges` com os serviços contratados acabou afetando a interpretação do modelo. Ver D-30.
 
 ---
 
@@ -159,3 +160,21 @@ Status possíveis: **Aceita** (entra no plano) · **Rejeitada** (fica fora do es
 - **Decisão:** um commit por mudança lógica, e push ao concluir as milestones M0–M4 definidas no backlog.
 - **Alternativas rejeitadas:** um commit por tarefa sem push (plano anterior) ou push a cada commit.
 - **Justificativa:** pedido do aluno. Commits pequenos deixam o histórico legível e fáceis de reverter, e o push por milestone mantém o GitHub sempre num estado coerente.
+
+---
+
+## Mudanças durante a execução
+
+### D-30 · `MonthlyCharges` fora das features do modelo — Aceita
+- **Contexto:** no T04, o gráfico de importância da Regressão Logística mostrou `MonthlyCharges` como a variável mais importante, com coeficiente −2,07. Isso significaria que "mensalidade alta reduz o churn", o oposto da EDA, em que quem cancela paga em média US$ 74 contra US$ 61.
+- **Causa (multicolinearidade):** a mensalidade é praticamente a soma dos serviços contratados. Uma regressão de `MonthlyCharges` sobre as colunas de serviço tem R² = 0,9988. Com a mesma informação entrando duas vezes, o modelo dividiu o efeito de forma arbitrária: fibra +1,38 e streaming +0,6, compensados pela mensalidade −2,07. As previsões continuavam corretas, mas os coeficientes perdiam o significado.
+- **Decisão:** retirar `MonthlyCharges` da entrada dos modelos. A coluna continua no dataset, na EDA e no cálculo do valor do cliente (T05). A informação de preço segue disponível pelas colunas de serviço e por `TotalCharges`.
+- **Alternativas rejeitadas:**
+  - Regularização mais forte (C = 0,1): mascara o sintoma sem resolver a causa, e a mensalidade fica com coeficiente ≈ 0.
+  - Importância por permutação: também é distorcida pela colinearidade (contrato aparecia só em 4º).
+  - Manter e explicar: o gráfico ficaria inutilizável na apresentação.
+- **Impacto:** AUC na validação cruzada 0,8462 → 0,8459; AUC no teste 0,841 → 0,842; recall 0,783 → 0,789. Os coeficientes passaram a ser coerentes com a EDA: tempo de casa e contrato de 2 anos reduzem o risco; contrato mensal, fibra e *electronic check* aumentam.
+- **📢 Para a apresentação (slide 4 ou 7):**
+  - Mensagem de negócio: *"O que faz o cliente cancelar não é o preço em si, mas o que ele está pagando: fibra e streaming."*
+  - Lição de modelagem: *"Prever bem não é o mesmo que explicar bem."* A primeira versão do modelo tinha AUC de 0,84, mas dizia que mensalidade alta reduz o churn. A conferência com a EDA revelou a multicolinearidade, e a correção não custou desempenho.
+  - Analogia, se a banca perguntar: duas pessoas empurrando o mesmo carro sempre juntas. Dá para ver que o carro andou, mas não quanto cada uma empurrou.
