@@ -1,5 +1,5 @@
 # Spec T02 · Notebook, seção 1: dados e limpeza
-**Status:** Aguardando aprovação
+**Status:** Concluída
 
 ## Objetivo
 Criar o `churn.ipynb` com a primeira seção, que carrega o CSV e entrega um DataFrame `df` limpo e conferido. Todas as seções seguintes (EDA, modelagem e impacto) partem desse `df`.

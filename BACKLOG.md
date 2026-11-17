@@ -86,11 +86,11 @@ Lista dos commits granulares.
 
 ### T02 · Notebook, seção 1: dados e limpeza
 Criar `churn.ipynb` com:
-- [ ] Célula de imports e `RANDOM_STATE = 42`, além de `os.makedirs('figures', exist_ok=True)`.
-- [ ] Carga do CSV e remoção de `customerID`.
-- [ ] `TotalCharges` convertida para número (`pd.to_numeric(errors='coerce')`), com os brancos preenchidos com 0 (D-08).
-- [ ] `Churn` convertido para 0/1.
-- [ ] Checagens de controle (D-07): `assert` de 7.043 linhas, 11 nulos em `TotalCharges` antes do preenchimento e taxa de churn entre 0,26 e 0,27.
+- [x] Célula de imports e `RANDOM_STATE = 42`, além de `os.makedirs('figures', exist_ok=True)`.
+- [x] Carga do CSV e remoção de `customerID`.
+- [x] `TotalCharges` convertida para número (`pd.to_numeric(errors='coerce')`), com os brancos preenchidos com 0 (D-08).
+- [x] `Churn` convertido para 0/1.
+- [x] Checagens de controle (D-07): `assert` de 7.043 linhas, 11 nulos em `TotalCharges` antes do preenchimento e taxa de churn entre 0,26 e 0,27.
 
 **Entregável:** seção 1 do notebook.
 **Aceite:** a seção executa sem erro e todos os `assert` passam.
