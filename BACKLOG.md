@@ -138,9 +138,9 @@ Criar `churn.ipynb` com:
 **Aceite:** o limiar ótimo foi escolhido sem usar o conjunto de teste, e o ganho do modelo com limiar ótimo é maior que o da campanha aleatória.
 
 ### T06 · Execução limpa, README e atualização da proposta
-- [ ] Executar o notebook de ponta a ponta: `jupyter nbconvert --to notebook --execute --inplace churn.ipynb` (D-26).
-- [ ] Criar `README.md` (no máximo uma página) com: objetivo; dataset e fonte; como executar (`python -m venv .venv`, `pip install -r requirements.txt`, abrir `churn.ipynb`); resultados principais (modelo escolhido, AUC, recall, limiar, ganho contra a campanha aleatória, top 20% → X%); 3 a 5 principais fatores de churn; limitações (seção 11 da proposta); seção "Uso de IA" (D-27); links para `DECISION_LOG.md` e `slides.pdf`.
-- [ ] Atualizar a proposta (D-25): taxa de churn igual a **26,5%** em todo o documento (seções 4 e 5.4), checklist 6.2 marcado, seção 9 com a estrutura final deste backlog e seção 10 com uma nota de que o escopo foi reduzido conforme o `DECISION_LOG.md`.
+- [x] Executar o notebook de ponta a ponta: `jupyter nbconvert --to notebook --execute --inplace churn.ipynb` (D-26).
+- [x] Criar `README.md` (no máximo uma página) com: objetivo; dataset e fonte; como executar (`python -m venv .venv`, `pip install -r requirements.txt`, abrir `churn.ipynb`); resultados principais (modelo escolhido, AUC, recall, limiar, ganho contra a campanha aleatória, top 20% → X%); 3 a 5 principais fatores de churn; limitações (seção 11 da proposta); seção "Uso de IA" (D-27); links para `DECISION_LOG.md` e `slides.pdf`.
+- [x] Atualizar a proposta (D-25): taxa de churn igual a **26,5%** em todo o documento (seções 4 e 5.4), checklist 6.2 marcado, seção 9 com a estrutura final deste backlog e seção 10 com uma nota de que o escopo foi reduzido conforme o `DECISION_LOG.md`.
 
 **Entregável:** notebook executado e versionado com saídas, `README.md` e proposta atualizada.
 **Aceite:** o `nbconvert` termina sem erro e todos os números do README batem com as saídas do notebook.

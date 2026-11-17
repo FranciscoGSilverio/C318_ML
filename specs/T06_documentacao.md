@@ -1,5 +1,5 @@
 # Spec T06 · Execução limpa, README e atualização da proposta
-**Status:** Aprovada
+**Status:** Concluída
 
 ## Objetivo
 Fechar o entregável **documentação do projeto**: um README que permite ao professor entender o resultado em 2 minutos e rodar o projeto, e a proposta original atualizada para refletir o que de fato foi feito.
