@@ -109,17 +109,17 @@ Criar `churn.ipynb` com:
 > 🧑 **Revisão do aluno (H1):** ler a seção 2 e validar as interpretações antes de seguir.
 
 ### T04 · Notebook, seção 3: modelagem
-- [ ] Divisão treino/teste 80/20 com `stratify=y` e `random_state=RANDOM_STATE`.
-- [ ] Um `ColumnTransformer` compartilhado: `OneHotEncoder(handle_unknown='ignore')` nas categóricas e `StandardScaler` nas numéricas (D-15).
-- [ ] Três pipelines, todos com `class_weight='balanced'` (D-12, D-14), e `GridSearchCV` com `StratifiedKFold(5, shuffle=True, random_state=RANDOM_STATE)` e `scoring='roc_auc'` (D-16). Grades sugeridas:
+- [x] Divisão treino/teste 80/20 com `stratify=y` e `random_state=RANDOM_STATE`.
+- [x] Um `ColumnTransformer` compartilhado: `OneHotEncoder(handle_unknown='ignore')` nas categóricas e `StandardScaler` nas numéricas (D-15).
+- [x] Três pipelines, todos com `class_weight='balanced'` (D-12, D-14), e `GridSearchCV` com `StratifiedKFold(5, shuffle=True, random_state=RANDOM_STATE)` e `scoring='roc_auc'` (D-16). Grades sugeridas:
   - Regressão Logística: `C ∈ {0.01, 0.1, 1, 10}`, `max_iter=1000`
   - Árvore de Decisão: `max_depth ∈ {3, 5, 8}` × `min_samples_leaf ∈ {1, 20, 50}`
   - Random Forest: `n_estimators=300`, `max_depth ∈ {None, 8, 12}` × `min_samples_leaf ∈ {1, 5}`, `n_jobs=-1`
-- [ ] Tabela comparativa: AUC médio ± desvio da validação cruzada para cada modelo.
-- [ ] Seleção do modelo final pela regra de D-16: maior AUC médio, mas se a diferença para a Regressão Logística for menor que 0,01, fica a Regressão Logística.
-- [ ] Avaliação do modelo final **no teste**, com limiar 0,5: ROC-AUC, precisão, recall e F1 da classe churn, e acurácia apenas como referência.
-- [ ] **Figura 3** (`figures/03_matriz_confusao.png`): matriz de confusão no teste.
-- [ ] **Figura 4** (`figures/04_importancia.png`): as 10 variáveis mais importantes do modelo final, com coeficientes se for a Regressão Logística ou `feature_importances_` se for árvore (D-17). Use os nomes vindos de `get_feature_names_out()`.
+- [x] Tabela comparativa: AUC médio ± desvio da validação cruzada para cada modelo.
+- [x] Seleção do modelo final pela regra de D-16: maior AUC médio, mas se a diferença para a Regressão Logística for menor que 0,01, fica a Regressão Logística.
+- [x] Avaliação do modelo final **no teste**, com limiar 0,5: ROC-AUC, precisão, recall e F1 da classe churn, e acurácia apenas como referência.
+- [x] **Figura 3** (`figures/03_matriz_confusao.png`): matriz de confusão no teste.
+- [x] **Figura 4** (`figures/04_importancia.png`): as 10 variáveis mais importantes do modelo final, com coeficientes se for a Regressão Logística ou `feature_importances_` se for árvore (D-17). Use os nomes vindos de `get_feature_names_out()`.
 
 **Entregável:** seção 3 do notebook, tabela comparativa e figuras 3 e 4.
 **Aceite:** AUC no teste ≥ 0,80 (é o valor esperado para esse dataset; se ficar abaixo, investigar antes de seguir). O conjunto de teste é usado só para o modelo final.

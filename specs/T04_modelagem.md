@@ -1,5 +1,5 @@
 # Spec T04 · Notebook, seção 3: modelagem
-**Status:** Aguardando aprovação
+**Status:** Concluída
 
 ## Objetivo
 Responder **"Quem vai cancelar?"** (pergunta 1). A seção treina e compara 3 modelos com validação cruzada, escolhe um modelo final e mede o desempenho dele uma única vez em dados nunca vistos. O resultado é o modelo que a seção 4 usa para calcular o impacto financeiro.
