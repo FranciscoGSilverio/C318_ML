@@ -1,5 +1,5 @@
 # Spec T05 · Notebook, seção 4: limiar e impacto financeiro
-**Status:** Aprovada
+**Status:** Concluída
 
 ## Objetivo
 Responder **"Vale a pena agir?"** (pergunta 4). A seção traduz o modelo em dinheiro: escolhe o limiar de decisão que maximiza o ganho de uma campanha de retenção e compara o resultado com uma campanha aleatória e com não fazer nada. É o principal diferencial do projeto e o slide de destaque da apresentação.
