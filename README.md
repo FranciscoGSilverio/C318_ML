@@ -4,6 +4,8 @@ Projeto individual da disciplina **C318 – Fundamentos de Machine Learning** (I
 
 **Dados:** [Telco Customer Churn](https://github.com/IBM/telco-customer-churn-on-icp4d) (IBM), com 7.043 clientes, 21 colunas e 26,5% de churn. É uma operadora fictícia da Califórnia.
 
+**Apresentação em vídeo:** [youtube.com/watch?v=x7_Ejowwalc](https://www.youtube.com/watch?v=x7_Ejowwalc). Os slides servem de apoio para uma demonstração do notebook no VS Code.
+
 ## Resultados
 
 | Pergunta de negócio | Resposta |
