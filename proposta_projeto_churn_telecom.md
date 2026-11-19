@@ -210,9 +210,10 @@ C318_ML/
 ├── data/
 │   └── Telco-Customer-Churn.csv       # Dataset original (IBM)
 ├── figures/                           # Gráficos usados na apresentação
-├── slides.md / slides.pdf             # Apresentação final
 └── requirements.txt
 ```
+
+A apresentação final foi entregue em vídeo, com link no [`README.md`](README.md). Os slides e o roteiro ficam fora do repositório, que guarda só o código e a documentação.
 
 A estrutura sugerida originalmente (4 notebooks, `src/`, `docs/`, `reports/`) foi simplificada para um notebook único e um repositório plano (D-01, D-02).
 
