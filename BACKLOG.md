@@ -62,8 +62,6 @@ Lista dos commits granulares.
 ├── requirements.txt
 ├── .gitignore
 ├── churn.ipynb            # único notebook, versionado com saídas (D-01, D-26)
-├── slides.md              # apresentação Marp (D-23)
-├── slides.pdf             # exportação da apresentação
 ├── specs/                 # uma spec por tarefa, aprovada antes da execução (D-28)
 ├── data/
 │   └── Telco-Customer-Churn.csv
@@ -146,11 +144,13 @@ Criar `churn.ipynb` com:
 **Aceite:** o `nbconvert` termina sem erro e todos os números do README batem com as saídas do notebook.
 
 ### T07 · Apresentação
-- [ ] Criar `slides.md` no formato Marp (`marp: true` no front matter) com **8 slides** seguindo o roteiro da seção 12 da proposta, usando as figuras de `figures/` (D-23):
+> **Concluída:** a apresentação foi entregue em vídeo (link no `README.md`). No formato final, 6 slides servem de apoio para uma demonstração do notebook no VS Code. Os slides, o PDF e o roteiro ficam fora do repositório, que guarda só o código e a documentação.
+
+- [x] Criar `slides.md` no formato Marp (`marp: true` no front matter) com **8 slides** seguindo o roteiro da seção 12 da proposta, usando as figuras de `figures/` (D-23):
   1. O problema · 2. Os dados · 3. Achados da EDA (figuras 1 e 2) · 4. O modelo (tabela comparativa) · 5. Desempenho (figuras 3 e 6) · 6. Impacto financeiro (tabela de cenários, slide de destaque) · 7. Recomendações de negócio (figura 4) · 8. Limitações e próximos passos
-- [ ] Incluir a nota de modelagem da **D-30** (multicolinearidade de `MonthlyCharges`) no slide 4 ou 7, com a mensagem de negócio e a lição "prever bem não é o mesmo que explicar bem". O texto pronto está no `DECISION_LOG.md`.
-- [ ] Notas do apresentador em cada slide, com 2 a 4 tópicos no formato `<!-- ... -->` (D-24), incluindo as perguntas prováveis da banca e a resposta curta de cada uma.
-- [ ] Exportar com `npx @marp-team/marp-cli slides.md --pdf --allow-local-files -o slides.pdf`. Se falhar (por exemplo, por falta de Chromium no WSL), não insistir: deixar a exportação para o aluno (H3) e registrar isso no commit.
+- [x] Incluir a nota de modelagem da **D-30** (multicolinearidade de `MonthlyCharges`) no slide 4 ou 7, com a mensagem de negócio e a lição "prever bem não é o mesmo que explicar bem". O texto pronto está no `DECISION_LOG.md`.
+- [x] Notas do apresentador em cada slide, com 2 a 4 tópicos no formato `<!-- ... -->` (D-24), incluindo as perguntas prováveis da banca e a resposta curta de cada uma.
+- [x] Exportar com `npx @marp-team/marp-cli slides.md --pdf --allow-local-files -o slides.pdf`. Se falhar (por exemplo, por falta de Chromium no WSL), não insistir: deixar a exportação para o aluno (H3) e registrar isso no commit.
 
 **Entregável:** `slides.md` e, se a exportação funcionar, `slides.pdf`.
 **Aceite:** 8 slides, todas as figuras referenciadas existem e os números batem com o notebook.
